@@ -1,10 +1,11 @@
-
 const express = require('express')
 const router = express.Router()
 const usercontroller = require('../controllers/user')
 const user = require('../controllers/user')
 
 router.get('/users', usercontroller.index)
+
+router.get('/user/:id', usercontroller.show)
 
 router.post('/user', usercontroller.store)
 

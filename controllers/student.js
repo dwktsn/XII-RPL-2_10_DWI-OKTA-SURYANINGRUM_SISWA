@@ -1,15 +1,14 @@
 
-const User = require('../models/User')
-const { raw } = require('express')
+const Student = require('../models/Student')
 
 module.exports = {
     index: async (req, res) => {
         try {
-            const users = await User.find()
-            if (users.length > 0) {
+            const students = await Student.find()
+            if (students.length > 0) {
                 res.status(200).json({
                     status: true,
-                    data: users,
+                    data: students,
                     method: req.method,
                     url: req.url
                 })  
@@ -25,10 +24,10 @@ module.exports = {
     },
     show: async (req, res) => {
         try {
-            const user = await User.findById(req.params.id)
+            const student = await Student.findById(req.params.id)
             res.json({
                 status: true,
-                data: user,
+                data: student,
                 method: req.method,
                 url: req.url,
                 message: "Data berhasil ditampilkan"
@@ -39,10 +38,10 @@ module.exports = {
     },
     store: async (req, res) => {
         try {
-            const user = await User.create(req.body)
+            const student = await Student.create(req.body)
             res.status(200).json({
                 status: true,
-                data: user,
+                data: student,
                 method: req.method,
                 url: req.url,
                 message: "Data berhasil ditambahkan"
@@ -53,13 +52,13 @@ module.exports = {
     },
     update: async (req, res) => {
         try {
-            const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+            const student = await Student.findByIdAndUpdate(req.params.id, req.body, {
                 new: true,
                 runValidators: true
             })
             res.json({
                 status: true,
-                data: user,
+                data: student,
                 method: req.method,
                 url: req.url,
                 message: "Data berhasil diubah"
@@ -70,7 +69,7 @@ module.exports = {
     },
     delete: async (req, res) => {
         try {
-            await User.findByIdAndDelete(req.params.id)
+            await Student.findByIdAndDelete(req.params.id)
             res.json({
                 status: true,
                 method: req.method,
@@ -81,7 +80,7 @@ module.exports = {
             res.status(400).json({success: false})
         }
         const id = req.params.id
-        users = users.filter(user => user.id != id)
+        students = students.filter(student => student.id != id)
     },
 
 }

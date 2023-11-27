@@ -1,5 +1,5 @@
 const express = require('express')
-const router = require('./router/users')
+const router = require('./router/students')
 const app = express()
 const connectDB = require('./convig/db')
 
